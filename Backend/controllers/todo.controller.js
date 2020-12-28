@@ -12,7 +12,7 @@ module.exports.index = async (req,res) => {
 module.exports.show = async (req,res) => {
   let {id} = req.params
   try {
-    const todos = await Todo.findyById(id).exec();
+    const todos = await Todo.findById(id).exec();
     res.json(todos);
   } catch (err) {
     console.log(err)
