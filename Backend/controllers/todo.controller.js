@@ -33,7 +33,7 @@ module.exports.add = async (req,res) => {
 module.exports.update = async (req,res) => {
   let {id} = req.params
 
-    let todo = Todo.findyById(id)
+    let todo = await Todo.findById(id)
     if(!todo) {
       res.status(404).send("Data not found");
     } else {
@@ -42,7 +42,7 @@ module.exports.update = async (req,res) => {
       todo.todo_priority = req.body.todo_priority;
       todo.todo_completed = req.body.todo_completed;
 
-      todo.save()
+    await todo.save()
         .then(todo => {
           res.json('Todo Updated');
         })
